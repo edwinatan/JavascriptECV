@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      img {
+        width: 300px;
+        padding: 20px;
+      }
+      img:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>TP 2 - EXO 5</h1>
+    <img src="./Assets/image1.png" alt="image1">
+    <img src="./Assets/image2.png" alt="image2">
+    <img src="./Assets/image3.png" alt="image3">
+
+    <script>
+      const listImg = document.querySelectorAll('img');
+      listImg.forEach((img) => {
+        img.addEventListener("mouseenter", function(e) {
+          this.style.transform = "scale(3)"
+        })
+        img.addEventListener("mouseleave", function(e) {
+          this.style.transform = 'scale(1)';
+        })
+      })
+    </script>
+
+  </body>
+</html>
