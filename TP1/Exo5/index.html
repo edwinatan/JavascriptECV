@@ -980,8 +980,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type='text/javascript' src='https://www.ecv.fr/app/themes/ecv/assets/app.c49c9dcc8864dd80ab8c.js?ver=1.0.0' id='app-js'></script>
 <script type='text/javascript' src='https://www.ecv.fr/wp/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
 
+  <script>
+    const tabP = document.querySelectorAll("p");
+    tabP.forEach((p) => {
+      p.parentNode.removeChild(p);
+    });
+  </script>
+
 </body>
 </html>
 
-<script type="text/javascript" src="./index.js"></script>
 
