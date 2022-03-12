@@ -34,8 +34,13 @@
           notClick = listImg[0];
         }
 
-        click.style.width =  click.offsetWidth * 1.2 + "px";
-        notClick.style.width = notClick.offsetWidth * 0.8 + "px";
+        // Not negatif
+        if(click.offsetWidth > 0 ){
+          click.style.width =  click.offsetWidth * 1.2 + "px";
+        }
+        if(notClick.offsetWidth > 0) {
+          notClick.style.width = notClick.offsetWidth * 0.8 + "px";
+        }
       }
     </script>
 
