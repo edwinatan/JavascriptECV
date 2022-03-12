@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      img {
+        padding: 20px;
+      }
+      img:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>TP 2 - EXO 3</h1>
+    <img onClick="handleClick(event)" src="./Assets/image1.png" alt="image1">
+    <img onClick="handleClick(event)" src="./Assets/image3.png" alt="image2">
+
+    <script>
+      const handleClick = (event) => {
+        let click, notClick;
+        const listImg = document.querySelectorAll('img');
+
+        const imageClick = event.target;
+        if(imageClick === listImg[0]){
+          click = listImg[0];
+          notClick = listImg[1];
+        } else {
+          click = listImg[1];
+          notClick = listImg[0];
+        }
+
+        click.style.width =  click.offsetWidth * 1.2 + "px";
+        notClick.style.width = notClick.offsetWidth * 0.8 + "px";
+      }
+    </script>
+
+  </body>
+</html>
