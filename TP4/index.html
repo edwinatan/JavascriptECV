@@ -26,28 +26,94 @@
   </head>
   <body>
 
-    <h1>TP 3 - EXO 1</h1>
+    <h1>TP 4 - EXO 1</h1>
 
-    <div class="carre"></div>
-    <div class="carre"></div>
-    <div class="carre"></div>
+<!-- 
+    6. Écrire une fonction findLongestWord(str) qui permet de trouver le mot le long plus d’une chaîne de caractère -->
 
     <script>
-      const divCarre = document.querySelectorAll('div');
-      divCarre.forEach((carre) => {
-        carre.addEventListener("click", function(e) {
-          console.log('carre.style.background', carre.style.background)
-          console.log('rico', carre.getClientRects)
-          if(carre.style.background === 'red'){
-            console.log('2', 2)
-            this.style.background = "black"
-            console.log('carre.style.background', carre.style.background)
-          } else {
-            console.log('3', 3)
-            this.style.background = "red"
+      const body = document.querySelector("body");
+
+      // EXO 1
+      const revertTxt = document.createElement('p')
+      const revert = (str) => {
+        return str.split("").reverse().join("");
+      }
+      revertTxt.textContent = revert("Hello Im Robert");
+      body.appendChild(revertTxt)
+
+      // EXO 2
+      const ucFirstTxt = document.createElement('p')
+      const ucFirst = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+      ucFirstTxt.textContent = ucFirst('hello');
+      body.appendChild(ucFirstTxt)
+
+      // EXO 3
+      const capitalizeTxt = document.createElement('p')
+      const capitalize = (str) => {
+        const split = str.split('')
+        split[0] = split[0].toUpperCase()
+        for (let i = 0; i < split.length; i++) {
+            if (split[i] && split[i] === ' ') {
+              split.splice(i+1, 1, split[i+1].toUpperCase())
+            }
+        }
+        return split.join('')
+      }
+      capitalizeTxt.textContent = capitalize("hello i'm robert");
+      body.appendChild(capitalizeTxt)
+
+      //EXO 4
+      const pascalCaseTxt = document.createElement('p')
+      const pascalCase = (str) => {
+        const split = str.split('')
+        split[0] = split[0].toUpperCase()
+        for (let i = 0; i < split.length; i++) {
+            if (split[i] && split[i] === ' ') {
+              split.splice(i+1, 1, split[i+1].toUpperCase())
+            }
+            if(split[i] === " "){
+              split.splice(i, 1)
+            }
+        }
+        return split.join('')
+      }
+      pascalCaseTxt.textContent = pascalCase("sentence in pascal");
+      body.appendChild(pascalCaseTxt)
+
+      //EXO 5
+      const palindrome1Txt = document.createElement('p')
+      const palindrome2Txt = document.createElement('p')
+      const palindrome = (str) => {
+        if(str === str.split("").reverse().join("")){
+          return true
+        }
+        return false
+      }
+      palindrome1Txt.textContent = palindrome("kayak");
+      palindrome2Txt.textContent = palindrome("sapin");
+      body.appendChild(palindrome1Txt)
+      body.appendChild(palindrome2Txt)
+
+      //EXO 6
+      const findLongestWordTxt = document.createElement('p')
+      let max = 0
+      let word 
+      const findLongestWord = (str) => {
+        const split = str.split(" ");
+        for(let i = 0; i < split.length; i++){
+          if(max < split[i].length){
+            max = split[i].length
+            word = split[i]
           }
-        })
-      })
+        }
+       return word
+      }
+      findLongestWordTxt.textContent = findLongestWord("Le chemin le plus court n'est pas toujours le meilleur");
+      body.appendChild(findLongestWordTxt)
+
     </script>
 
   </body>
