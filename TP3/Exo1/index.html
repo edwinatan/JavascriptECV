@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="./index.js" type="text/javascxript" defer></script> -->
+    <title>Document</title>
+    <style>
+      .carre {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        padding: 20px;
+        margin: 30px;
+      }
+      .carre:hover {
+        cursor: pointer;
+      }
+      .carreRed {
+        background-color: red !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>TP 3 - EXO 1</h1>
+
+    <div id="un" class="carre"></div>
+    <div id="deux" class="carre"></div>
+    <div id="trois" class="carre"></div>
+
+    <script>
+      const divCarre = document.querySelectorAll('div');
+      divCarre.forEach((carre) => {
+        carre.addEventListener("click", function(e) {
+          console.log('ici')
+          carre.classList.toggle("carreRed")
+        })
+      })
+    </script>
+
+  </body>
+</html>
