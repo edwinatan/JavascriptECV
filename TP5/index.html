@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <h1>TP 5</h1>
+
+    <script>
+      const body = document.querySelector("body")
+      const tabOne = [0,2,4,6,8,8]
+      const tabTwo = [1,2,3,4,5,6]
+
+      //EXO 1
+      //#Avocado , #Became , #Global
+      const getHashTagsTxt = document.createElement('p')
+      const getHashTags = (str) => {
+        return str.split(" ").sort((a,b) => b.length - a.length).splice(0,3).map((word) => ` #${word} `)
+      }
+      getHashTagsTxt.textContent = getHashTags("How the Avocado Became the Fruit of the Global Trade")
+      body.appendChild(getHashTagsTxt)
+
+      //EXO 2
+      //0,2,4,6,8
+      const removeDuplicateTxt = document.createElement('p')
+      const removeDuplicate = (tab) => {
+        return [...new Set(tab)]
+      }
+      removeDuplicateTxt.textContent = removeDuplicate(tabOne)
+      body.appendChild(removeDuplicateTxt)
+
+      //EXO 3
+      //2,4,6
+      const intersectionTxt = document.createElement('p')
+      const intersection = (first, second) => {
+        return first.filter(numberOne => numberOne === second.find(numberTwo => numberTwo === numberOne))
+      }
+      intersectionTxt.textContent = intersection(tabOne, tabTwo)
+      body.appendChild(intersectionTxt)
+
+      //EXO 4
+      //0,1,3,5,8
+      const arrayDiffTxt = document.createElement('p')
+      const arrayDiff = (first, second) => {
+        const tabFirst = first.filter(numberOne => numberOne !== second.find(numberTwo => numberTwo === numberOne))
+        const tabSecond = second.filter(numberTwo => numberTwo !== first.find(numberOne => numberOne === numberTwo))
+        return [...new Set(tabFirst.concat(tabSecond).sort())]
+      }
+      arrayDiffTxt.textContent = arrayDiff(tabOne, tabTwo)
+      body.appendChild(arrayDiffTxt)
+
+      //EXO 5
+      //120
+      const combinationsText = document.createElement('p')
+      const combinations = (...numbers) => {
+        return numbers.reduce((previousValue, currentValue) => previousValue * currentValue)
+      }
+      combinationsText.textContent = combinations(2,3,4,5)
+      body.appendChild(combinationsText)
+    </script>
+
+  </body>
+</html>
