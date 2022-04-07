@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <h1>TP 6</h1>
+
+    <script>
+      const fiscalCode = (code) => {
+        let compteurVowel = 0
+        let nameUppercase = ""
+  
+        const { name, surname, gender, dob } = code
+        const vowels = ["a", "e", "i", "o", "u"]
+        const nameSplited  = name.toLowerCase().split("")
+
+        //[m,t,t]
+        const letterConsonant = nameSplited.filter(value => value !== vowels.find(vowel => vowel === value))
+        const letterVowel = nameSplited.filter(value => value === vowels.find(vowel => vowel === value))
+
+        //Newman -> NWM
+        if(letterConsonant.length >= 3 && name.length > 3){
+          nameUppercase = letterConsonant.splice(0,3).join("").toUpperCase()
+        }
+
+        //Matt -> MTT
+        if(letterConsonant.length >= 3) {
+          nameUppercase = letterConsonant.join("").toUpperCase()
+        }
+
+        //Hope -> HPO
+        if(letterConsonant.length <= 3 && nameSplited.length > 3){
+          console.log("ici?")
+          nameUppercase = letterConsonant.concat(letterVowel).splice(0,3).join("").toUpperCase()
+        }
+
+        // Mat -> MTA
+        if(letterConsonant.length < 3 &&  name.length <= 3){
+          nameUppercase = letterConsonant.concat(letterVowel).join("").toUpperCase()
+        }
+
+        //Yu -> YUX 
+        if(name.length < 3){
+            nameSplited.push('x')
+            nameUppercase = nameSplited.join("").toUpperCase();
+        }
+        console.log('nameUp', nameUppercase)
+      }
+
+      fiscalCode({
+        name: 'Hope',
+        surname: 'Edabit',
+        gender: 'M',
+        dob: "1/1/1900",
+      })
+    </script>
+
+  </body>
+</html>
