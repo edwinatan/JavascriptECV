@@ -11,14 +11,34 @@
     <h1>TP 6</h1>
 
     <script>
+      const vowels = ["a", "e", "i", "o", "u"]
+
+      const splited = (la) => {
+        const letterConsonant = la.filter(value => value !== vowels.find(vowel => vowel === value))
+        const letterVowel = la.filter(value => value === vowels.find(vowel => vowel === value))
+
+        return {
+          un: letterConsonant,
+          deux: letterVowel
+        }
+      }
+
       const fiscalCode = (code) => {
         let compteurVowel = 0
         let nameUppercase = ""
-  
-        const { name, surname, gender, dob } = code
-        const vowels = ["a", "e", "i", "o", "u"]
-        const nameSplited  = name.toLowerCase().split("")
+        let surnameUppercase = ""
 
+        const { name, surname, gender, dob } = code
+        const nameSplited  = name.toLowerCase().split("")
+        const surnameSplited  = surname.toLowerCase().split("")
+
+        const { un, deux } = splited(nameSplited)
+
+        console.log('un', un)
+        console.log('deux', deux)
+
+
+        /* NAME */
         //[m,t,t]
         const letterConsonant = nameSplited.filter(value => value !== vowels.find(vowel => vowel === value))
         const letterVowel = nameSplited.filter(value => value === vowels.find(vowel => vowel === value))
@@ -44,17 +64,29 @@
           nameUppercase = letterConsonant.concat(letterVowel).join("").toUpperCase()
         }
 
-        //Yu -> YUX 
+        //Yu -> YUX
         if(name.length < 3){
             nameSplited.push('x')
             nameUppercase = nameSplited.join("").toUpperCase();
         }
         console.log('nameUp', nameUppercase)
+
+
+        /* SURNAME */
+       
       }
 
+
+      // Générez 3 lettres majuscules à partir du nom, s’il y a :
+      // Exactement 3 consonnes ,les consonnes sont utilisées dans l'ordre
+      // où elles apparaissent (Matt -> MTT). Plus de 3 consonnes , la première,
+      // troisième et quatrième consonnes sont utilisées (Samantha -> SNT | Thomas -> TMS).
+      // Moins de 3 consonnes, les voyelles remplaceront les caractères
+      // manquants dans le même ordre qu'ils apparaissent (Bob -> BBO | Paula -> PLA).
+ 
       fiscalCode({
         name: 'Hope',
-        surname: 'Edabit',
+        surname: 'Samantha',
         gender: 'M',
         dob: "1/1/1900",
       })
