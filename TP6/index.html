@@ -8,8 +8,10 @@
   </head>
   <body>
     <h1>TP 6</h1>
+
     <script>
       const vowels = ["a", "e", "i", "o", "u"]
+
       const splited = (split) => {
         const letterConsonant = split.filter(value => value !== vowels.find(vowel => vowel === value))
         const letterVowel = split.filter(value => value === vowels.find(vowel => vowel === value))
@@ -18,42 +20,53 @@
           vowel: letterVowel
         }
       }
+
       const fiscalCode = (code) => {
-        let compteurVowel = 0
-        let nameUppercase = ""
         let surnameUppercase = ""
-        const { name, surname, gender, dob } = code
-        const nameConsonant = splited(name.toLowerCase().split("")).consonant
-        const nameVowel = splited(name.toLowerCase().split("")).vowel
+        let nameUppercase = ""
+        const { surname, name, gender, dob } = code
+
+        const surnameSplited  = surname.toLowerCase().split("")
+        const nameSplited  = name.toLowerCase().split("")
+
         const surnameConsonant = splited(surname.toLowerCase().split("")).consonant
         const surnameVowel = splited(surname.toLowerCase().split("")).vowel
-        //Matt -> MTT //
-        if(nameConsonant.length >= 3) {
-          console.log('ouais', nameConsonant)
-          nameUppercase = nameConsonant.join("").toUpperCase()
-        }
+        const nameConsonant = splited(name.toLowerCase().split("")).consonant
+        const nameVowel = splited(name.toLowerCase().split("")).vowel
+
         //Hope -> HPO
-        if(nameConsonant.length < 3 && nameSplited.length > 3){
-          console.log("ici?")
-          nameUppercase = nameConsonant.concat(nameVowel).splice(0,3).join("").toUpperCase()
+        if(surnameConsonant.length < 3 && nameSplited.length > 3){
+          surnameUppercase = surnameConsonant.concat(surnameVowel).splice(0,3).join("").toUpperCase()
         }
+        
+        //Matt -> MTT //
+        if(surnameConsonant.length >= 3) {
+          console.log('1', surnameConsonant)
+          surnameUppercase = surnameConsonant.join("").toUpperCase()
+        }
+
+
         //Newman -> NWM
-        if(nameConsonant.length >= 3 && name.length > 3){
-          console.log("Newman?")
-          nameUppercase = nameConsonant.splice(0,3).join("").toUpperCase()
+        if(surnameConsonant.length >= 3 && name.length > 3){
+          surnameUppercase = surnameConsonant.splice(0,3).join("").toUpperCase()
         }
+
         // Mat -> MTA
-        if(nameConsonant.length < 3 &&  name.length <= 3){
-          nameUppercase = nameConsonant.concat(nameVowel).join("").toUpperCase()
+        if(surnameConsonant.length < 3 &&  name.length <= 3){
+          surnameUppercase = surnameConsonant.concat(surnameVowel).join("").toUpperCase()
         }
+
         //Yu -> YUX
-        if(name.length < 3){
-            nameSplited.push('x')
-            nameUppercase = nameSplited.join("").toUpperCase();
+        if(surname.length < 3){
+            surnameSplited.push('x')
+            surnameUppercase = surnameSplited.join("").toUpperCase();
         }
-        console.log('name', nameUppercase)
-        /* SURNAME */
+
+        console.log('name', surnameUppercase)
+        /* NAME */
+
       }
+
       // Générez 3 lettres majuscules à partir du nom, s’il y a :
       // Exactement 3 consonnes ,les consonnes sont utilisées dans l'ordre
       // où elles apparaissent (Matt -> MTT). Plus de 3 consonnes , la première,
@@ -61,8 +74,8 @@
       // Moins de 3 consonnes, les voyelles remplaceront les caractères
       // manquants dans le même ordre qu'ils apparaissent (Bob -> BBO | Paula -> PLA).
       fiscalCode({
-        name: 'Newman',
-        surname: 'Samantha',
+        surname: 'Yu',
+        name: 'Samantha',
         gender: 'M',
         dob: "1/1/1900",
       })
