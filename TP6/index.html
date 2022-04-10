@@ -10,6 +10,8 @@
     <h1>TP 6</h1>
 
     <script>
+      const body = document.querySelector("body")
+
       const vowels = ["a", "e", "i", "o", "u"]
 
       const splited = (split) => {
@@ -123,24 +125,35 @@
           "S",
           "T",
         ]
-        const datess = new Date(dob)
 
-        console.log("date", datess.getMonth().toLocaleString("FR"))
+        const date = new Date(dob).toLocaleString("FR")
+        const dateYear = new Date(date).getFullYear().toString()
+        const newDateMonth = new Date(date).getMonth()
+        const newDateDay = new Date(date).getDate()
 
-        if (gender === "M") {
+        console.log("oui celui-la", dateYear)
+
+        /* SEXE */
+        let underTen
+        if (newDateDay < 10) {
+          if (gender === "M") {
+            underTen = 0 + newDateDay.toString()
+          } else {
+            underTen = (newDateDay + 40).toString()
+            console.log("dateMonth", underTen)
+          }
         }
-        //Générez une lettre correspondant au mois de naissance (janvier -> A | décembre -> T)
-        //en utilisant la table de conversion incluse dans le code. Pour les hommes, prenez
-        //le jour de naissance en ajoutant un zéro au début s'il est inférieur à 10
-        //(tout 9e jour -> 09 | tout 20e jour -> 20). Pour les femmes, prenez le jour de naissance
-        //et ajoutez 40 (tout 9e jour -> 49 | tout 20e jour -> 60)
+
+        const resultatText = document.createElement("p")
+        resultatText.textContent = `${surnameUppercase}${nameUppercase}${dateYear[2]}${dateYear[3]}${monthLetter[newDateMonth]}${underTen}`
+        body.appendChild(resultatText)
       }
 
       fiscalCode({
-        surname: "Yu",
-        name: "bob",
+        name: "Matt",
+        surname: "Edabit",
         gender: "M",
-        dob: "9/10/1901", // mois jours
+        dob: "1/1/1900", //J/M/Y
       })
     </script>
   </body>
