@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
@@ -13,11 +13,15 @@
       const vowels = ["a", "e", "i", "o", "u"]
 
       const splited = (split) => {
-        const letterConsonant = split.filter(value => value !== vowels.find(vowel => vowel === value))
-        const letterVowel = split.filter(value => value === vowels.find(vowel => vowel === value))
+        const letterConsonant = split.filter(
+          (value) => value !== vowels.find((vowel) => vowel === value)
+        )
+        const letterVowel = split.filter(
+          (value) => value === vowels.find((vowel) => vowel === value)
+        )
         return {
           consonant: letterConsonant,
-          vowel: letterVowel
+          vowel: letterVowel,
         }
       }
 
@@ -26,58 +30,117 @@
         let nameUppercase = ""
         const { surname, name, gender, dob } = code
 
-        const surnameSplited  = surname.toLowerCase().split("")
-        const nameSplited  = name.toLowerCase().split("")
+        const surnameSplited = surname.toLowerCase().split("")
+        const nameSplited = name.toLowerCase().split("")
 
-        const surnameConsonant = splited(surname.toLowerCase().split("")).consonant
+        const surnameConsonant = splited(
+          surname.toLowerCase().split("")
+        ).consonant
         const surnameVowel = splited(surname.toLowerCase().split("")).vowel
         const nameConsonant = splited(name.toLowerCase().split("")).consonant
         const nameVowel = splited(name.toLowerCase().split("")).vowel
 
         //Hope -> HPO
-        if(surnameConsonant.length < 3 && nameSplited.length > 3){
-          surnameUppercase = surnameConsonant.concat(surnameVowel).splice(0,3).join("").toUpperCase()
+        if (surnameConsonant.length < 3 && nameSplited.length > 3) {
+          surnameUppercase = surnameConsonant
+            .concat(surnameVowel)
+            .splice(0, 3)
+            .join("")
+            .toUpperCase()
         }
-        
+
         //Matt -> MTT //
-        if(surnameConsonant.length >= 3) {
-          console.log('1', surnameConsonant)
+        if (surnameConsonant.length >= 3) {
+          console.log("1", surnameConsonant)
           surnameUppercase = surnameConsonant.join("").toUpperCase()
         }
 
-
         //Newman -> NWM
-        if(surnameConsonant.length >= 3 && name.length > 3){
-          surnameUppercase = surnameConsonant.splice(0,3).join("").toUpperCase()
+        if (surnameConsonant.length >= 3 && surname.length > 3) {
+          surnameUppercase = surnameConsonant
+            .splice(0, 3)
+            .join("")
+            .toUpperCase()
         }
 
         // Mat -> MTA
-        if(surnameConsonant.length < 3 &&  name.length <= 3){
-          surnameUppercase = surnameConsonant.concat(surnameVowel).join("").toUpperCase()
+        if (surnameConsonant.length < 3 && surname.length <= 3) {
+          surnameUppercase = surnameConsonant
+            .concat(surnameVowel)
+            .join("")
+            .toUpperCase()
         }
 
         //Yu -> YUX
-        if(surname.length < 3){
-            surnameSplited.push('x')
-            surnameUppercase = surnameSplited.join("").toUpperCase();
+        if (surname.length < 3) {
+          surnameSplited.push("x")
+          surnameUppercase = surnameSplited.join("").toUpperCase()
         }
 
-        console.log('name', surnameUppercase)
-        /* NAME */
+        console.log("name", surnameUppercase)
 
+        /* NAME */
+        if (nameConsonant.length === 3) {
+          nameUppercase = nameConsonant.join("").toUpperCase()
+        }
+
+        if (nameConsonant.length > 3) {
+          nameUppercase = nameConsonant.join("").toUpperCase()
+          nameUppercase = `${nameUppercase[0]}${nameUppercase[2]}${nameUppercase[3]}`
+        }
+
+        if (nameConsonant.length < 3) {
+          nameUppercase = `${nameConsonant
+            .join("")
+            .toUpperCase()}${nameVowel[0].toUpperCase()}`
+        }
+
+        if (name.length < 3) {
+          if (nameVowel) {
+            nameUppercase = nameConsonant.concat(nameVowel)
+            nameUppercase.push("x")
+            nameUppercase = nameUppercase.join("").toUpperCase()
+          }
+          nameUppercase = nameConsonant
+          nameUppercase.push("X")
+          nameUppercase = nameUppercase.join("").toUpperCase()
+
+          console.log("oue", nameUppercase)
+        }
+
+        /* DATE DE NAISSANCE ET SEXE */
+        const monthLetter = [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "H",
+          "L",
+          "M",
+          "P",
+          "R",
+          "S",
+          "T",
+        ]
+        const datess = new Date(dob)
+
+        console.log("date", datess.getMonth().toLocaleString("FR"))
+
+        if (gender === "M") {
+        }
+        //Générez une lettre correspondant au mois de naissance (janvier -> A | décembre -> T)
+        //en utilisant la table de conversion incluse dans le code. Pour les hommes, prenez
+        //le jour de naissance en ajoutant un zéro au début s'il est inférieur à 10
+        //(tout 9e jour -> 09 | tout 20e jour -> 20). Pour les femmes, prenez le jour de naissance
+        //et ajoutez 40 (tout 9e jour -> 49 | tout 20e jour -> 60)
       }
 
-      // Générez 3 lettres majuscules à partir du nom, s’il y a :
-      // Exactement 3 consonnes ,les consonnes sont utilisées dans l'ordre
-      // où elles apparaissent (Matt -> MTT). Plus de 3 consonnes , la première,
-      // troisième et quatrième consonnes sont utilisées (Samantha -> SNT | Thomas -> TMS).
-      // Moins de 3 consonnes, les voyelles remplaceront les caractères
-      // manquants dans le même ordre qu'ils apparaissent (Bob -> BBO | Paula -> PLA).
       fiscalCode({
-        surname: 'Yu',
-        name: 'Samantha',
-        gender: 'M',
-        dob: "1/1/1900",
+        surname: "Yu",
+        name: "bob",
+        gender: "M",
+        dob: "9/10/1901", // mois jours
       })
     </script>
   </body>
