@@ -51,7 +51,7 @@
             .toUpperCase()
         }
 
-        //Matt -> MTT //
+        //Matt -> MTT
         if (surnameConsonant.length >= 3) {
           console.log("1", surnameConsonant)
           surnameUppercase = surnameConsonant.join("").toUpperCase()
@@ -78,8 +78,6 @@
           surnameSplited.push("x")
           surnameUppercase = surnameSplited.join("").toUpperCase()
         }
-
-        console.log("name", surnameUppercase)
 
         /* NAME */
         if (nameConsonant.length === 3) {
@@ -110,7 +108,7 @@
           console.log("oue", nameUppercase)
         }
 
-        /* DATE DE NAISSANCE ET SEXE */
+        /* DATE DE NAISSANCE */
         const monthLetter = [
           "A",
           "B",
@@ -131,8 +129,6 @@
         const newDateMonth = new Date(date).getMonth()
         const newDateDay = new Date(date).getDate()
 
-        console.log("oui celui-la", dateYear)
-
         /* SEXE */
         let underTen
         if (newDateDay < 10) {
@@ -140,7 +136,6 @@
             underTen = 0 + newDateDay.toString()
           } else {
             underTen = (newDateDay + 40).toString()
-            console.log("dateMonth", underTen)
           }
         }
 

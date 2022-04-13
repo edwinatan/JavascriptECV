@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TP 7</h1>
+
+    <script>
+      const promiseOne = (str) => {
+        return new Promise((resolve, failure) => {
+          str.length > 20 ? failure("failure") : resolve(true)
+        })
+      }
+
+      const promiseTwo = (nb1, nb2) => {
+        return new Promise((resolve, failure) => {
+          nb1 > nb2 ? resolve(nb1 - nb2) : failure("failure")
+        })
+      }
+
+      const executeOne = () => {
+        // => failure
+        const res = promiseOne(
+          "Exécutez toutes les fonctions créées ci-dessus avec des then & catch"
+        )
+          .then((res) => res)
+          .catch((err) => err)
+        return res
+      }
+
+      const executeTwo = () => {
+        // => resolve true = 429
+        const res = promiseTwo(485, 56)
+          .then((res) => res)
+          .catch((err) => err)
+        return res
+      }
+
+      console.log("1", executeOne())
+      console.log("2", executeTwo())
+
+      const tryCatchOne = async () => {
+        // => resolve true
+        try {
+          return await promiseOne("try catch")
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      const tryCatchTwo = async () => {
+        // => failure
+        try {
+          return await promiseTwo(4, 599)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      console.log("3", tryCatchOne())
+      console.log("4", tryCatchTwo())
+    </script>
+  </body>
+</html>
